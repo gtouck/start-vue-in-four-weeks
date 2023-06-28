@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" lang="zh-CN" />
+    <title>猜数字</title>
+  </head>
+  <body>
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+      <p class="chanceRemain"></p>
+      <label for="guessField">Enter a guess: </label>
+      <input type="number" id="guessField" class="guessField" />
+      <input type="submit" value="Submit guess" class="guessSubmit" />
+    </div>
+  </body>
+  <script>
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    const guesses = document.querySelector(".guesses");
+    const lastResult = document.querySelector(".lastResult");
+    const lowOrHi = document.querySelector(".lowOrHi");
+    const chanceRemain = document.querySelector(".chanceRemain");
+
+    const guessSubmit = document.querySelector(".guessSubmit");
+    const guessField = document.querySelector(".guessField");
+
+    let guessCount = 0;
+    const guesschances = 10;
+    let resetButton;
+    lastResult.textContent = "enjoy the game😊";
+    lowOrHi.textContent = "input a number between 1 and 100";
+    guesses.textContent = "Previous guesses: ";
+    chanceRemain.textContent = "You have " + (guesschances - guessCount) + " chances left";
+    function checkGuess() {
+      guessCount++;
+      
+      chanceRemain.textContent = "You have " + (guesschances - guessCount) + " chances left";
+      let userGuess = Number(guessField.value);
+      guesses.textContent += userGuess + " ";
+      if (userGuess === randomNumber) {
+        lastResult.textContent = "Congratulations! You got it right!";
+        lastResult.style.backgroundColor = "green";
+        lowOrHi.textContent = "";
+        setGameOver();
+      } else if (guessCount === guesschances) {
+        lastResult.textContent = "!!!GAME OVER!!!";
+        setGameOver();
+      } else {
+        lastResult.textContent = "Wrong!";
+        lastResult.style.backgroundColor = "red";
+        if (userGuess < randomNumber) {
+          lowOrHi.textContent = "Last guess was too low!";
+        } else if (userGuess > randomNumber) {
+          lowOrHi.textContent = "Last guess was too high!";
+        }
+      }
+      
+      guessField.value = "";
+      guessField.focus();
+    }
+    function setGameOver() {
+      guessField.disabled = true;
+      guessSubmit.disabled = true;
+      resetButton = document.createElement("button");
+      resetButton.textContent = "Start new game";
+      document.body.appendChild(resetButton);
+      resetButton.addEventListener("click", resetGame);
+    }
+    function resetGame() {
+      // 刷新页面
+      window.location.reload();
+    }
+    guessSubmit.addEventListener("click", checkGuess);
+  </script>
+</html>

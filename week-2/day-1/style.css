@@ -1,0 +1,59 @@
+h1 {
+  color: #aaa;
+  text-align: center;
+}
+body {
+  background-color: #eee;
+}
+div {
+  display: inline-block;
+  margin: 50px 50px 50px 50px;
+}
+.test3:hover {
+  background-color: #7dee9f;
+}
+.test2:hover {
+  background-color: #28acf8;
+}
+.test1:hover {
+  display: none;
+}
+.test1::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.test2:focus {
+  background-color: #f1b07a;
+}
+.test3 {
+  background-color: #28acf8;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #555;
+}
+.test1 {
+  position: relative;
+  background-color: #7dee9f;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #555;
+}
+.test2 {
+  background-color: #f1b07a;
+  width: 100px;
+  height: 100px;
+  margin: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #555;
+}
+article p::first-line {
+  font-size: 120%;
+  font-weight: bold;
+}
