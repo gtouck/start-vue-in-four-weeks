@@ -5,28 +5,335 @@
     <meta charset="utf-8" lang="zh-CN" />
     <link type="text/css" rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <h1><attr> HELLO WORLD </attr> <code>HELLO WORLD</code></h1>
-    <!-- <span class="test1" style="display: inline-block;"></span>
-    <span class="test1" style="display: inline-block;"></span> -->
-    <article>
-      <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo
-              melon azuki bean garlic.</p>
-  
-      <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard
-              greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
-  </article>
-  <div style="width: max-content;padding:0px 100px;">
-      <div class="test3"></div>
-      <div class="test1"></div>
-      <div class="test2"></div>
+    <input type="button" value="submit" onclick="alert('hello world')" />
+
+    <div style="height: 50px; margin: 10px 10px">
+      <div class="botton" @click="fun">
+        <div
+          style="
+            width: 32px;
+            height: 32px;
+            background-image: url(translate.svg);
+            background-size: cover;
+            display: inline-block;
+            margin: auto 10px;
+          "
+        ></div>
+        <a>提交</a>
+      </div>
     </div>
-    <style>
-      h1 {
-        color: red;
-        font-size: 50px;
-        font-family: "Times New Roman", Times, serif;
-      }
-    </style>
+    <div style="display: flex; width: 800px; height: 300px; margin: auto">
+      <div
+        style="
+          height: 100px;
+          width: 100px;
+          background-color: aqua;
+          display: inline-block;
+          margin: auto;
+        "
+      ></div>
+      <div
+        style="
+          height: 100px;
+          width: 100px;
+          background-color: aqua;
+          display: inline-block;
+          margin: auto;
+        "
+      ></div>
+      <div
+        style="
+          height: 100px;
+          width: 100px;
+          background-color: aqua;
+          display: inline-block;
+          margin: auto;
+        "
+      ></div>
+    </div>
+    <div class="nnnn">
+      <div style="width: 200px; height: 200px">
+        <svg
+          width="220"
+          height="220"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient
+              id="GradientPad"
+              cx="0.5"
+              cy="0.5"
+              r="0.4"
+              fx="0.75"
+              fy="0.75"
+              spreadMethod="pad"
+            >
+              <stop offset="0%" stop-color="red" />
+              <stop offset="100%" stop-color="blue" />
+            </radialGradient>
+            <radialGradient
+              id="GradientRepeat"
+              cx="0.5"
+              cy="0.5"
+              r="0.4"
+              fx="0.75"
+              fy="0.75"
+              spreadMethod="repeat"
+            >
+              <stop offset="0%" stop-color="red" />
+              <stop offset="100%" stop-color="blue" />
+            </radialGradient>
+            <radialGradient
+              id="GradientReflect"
+              cx="0.5"
+              cy="0.5"
+              r="0.4"
+              fx="0.75"
+              fy="0.75"
+              spreadMethod="reflect"
+            >
+              <stop offset="0%" stop-color="red" />
+              <stop offset="100%" stop-color="blue" />
+            </radialGradient>
+          </defs>
+
+          <rect
+            x="10"
+            y="10"
+            rx="15"
+            ry="15"
+            width="100"
+            height="100"
+            fill="url(#GradientPad)"
+          />
+          <rect
+            x="10"
+            y="120"
+            rx="15"
+            ry="15"
+            width="100"
+            height="100"
+            fill="url(#GradientRepeat)"
+          />
+          <rect
+            x="120"
+            y="120"
+            rx="15"
+            ry="15"
+            width="100"
+            height="100"
+            fill="url(#GradientReflect)"
+          />
+
+          <text
+            x="15"
+            y="30"
+            fill="white"
+            font-family="sans-serif"
+            font-size="12pt"
+          >
+            Pad
+          </text>
+          <text
+            x="15"
+            y="140"
+            fill="white"
+            font-family="sans-serif"
+            font-size="12pt"
+          >
+            Repeat
+          </text>
+          <text
+            x="125"
+            y="140"
+            fill="white"
+            font-family="sans-serif"
+            font-size="12pt"
+          >
+            Reflect
+          </text>
+        </svg>
+      </div>
+      <div style="width: 200px; height: 200px">
+        <svg
+          width="120"
+          height="240"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient id="RadialGradient1">
+              <stop offset="0%" stop-color="red" />
+              <stop offset="100%" stop-color="blue" />
+            </radialGradient>
+            <radialGradient id="RadialGradient2" cx="0.25" cy="0.25" r="0.25">
+              <stop offset="0%" stop-color="red" />
+              <stop offset="100%" stop-color="blue" />
+            </radialGradient>
+          </defs>
+
+          <rect
+            x="10"
+            y="10"
+            rx="15"
+            ry="15"
+            width="100"
+            height="100"
+            fill="url(#RadialGradient1)"
+          />
+          <rect
+            x="10"
+            y="120"
+            rx="15"
+            ry="15"
+            width="100"
+            height="100"
+            fill="url(#RadialGradient2)"
+          />
+        </svg>
+      </div>
+      <div>
+        <svg
+          width="200"
+          height="200"
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+        >
+          <defs>
+            <linearGradient id="Gradient1">
+              <stop offset="5%" stop-color="white" />
+              <stop offset="95%" stop-color="blue" />
+            </linearGradient>
+            <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="5%" stop-color="red" />
+              <stop offset="95%" stop-color="orange" />
+            </linearGradient>
+
+            <pattern id="Pattern" x="0" y="0" width=".25" height=".25">
+              <rect x="0" y="0" width="50" height="50" fill="skyblue" />
+              <rect x="0" y="0" width="25" height="25" fill="url(#Gradient2)" />
+              <circle
+                cx="25"
+                cy="25"
+                r="20"
+                fill="url(#Gradient1)"
+                fill-opacity="0.5"
+              />
+            </pattern>
+          </defs>
+
+          <rect
+            fill="url(#Pattern)"
+            stroke="black"
+            x="0"
+            y="0"
+            width="200"
+            height="200"
+          />
+        </svg>
+      </div>
+      <div>
+        <svg
+          width="200"
+          height="200"
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+        >
+          <path
+            id="my_path"
+            d="M 20,20 C 40,40 80,40 100,20"
+            fill="transparent"
+          />
+          <text>
+            <textPath
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xlink:href="#my_path"
+            >
+              This text follows a curve.
+            </textPath>
+          </text>
+        </svg>
+      </div>
+      <br />
+      <div></div>
+      <div>
+        <svg width="350" height="160">
+          <g class="layer" transform="translate(60,10)">
+            <circle r="5" cx="0" cy="105" />
+            <circle r="5" cx="90" cy="90" />
+            <circle r="5" cx="180" cy="60" />
+            <circle r="5" cx="270" cy="0" />
+
+            <g class="y axis">
+              <path d="M 0,0 L 0,120" stroke="black" />
+              <text x="-40" y="105" dy="5">$10</text>
+              <text x="-40" y="0" dy="5">$80</text>
+            </g>
+            <g class="x axis" transform="translate(0, 120)">
+              <line x1="0" y1="0" x2="270" y2="0" stroke="black" />
+              <text x="-30" y="20">January 2014</text>
+              <text x="240" y="20">April</text>
+            </g>
+            <g class="data">
+              <path
+                d="M 0,105 L 90,90 L 180,60 L 270,0"
+                stroke="red"
+                fill="none"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div>
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <defs>
+            <linearGradient id="Gradient">
+              <stop offset="0" stop-color="white" stop-opacity="0" />
+              <stop offset="1" stop-color="white" stop-opacity="1" />
+            </linearGradient>
+            <mask id="Mask">
+              <rect
+                x="0"
+                y="0"
+                width="200"
+                height="200"
+                fill="url(#Gradient)"
+              />
+            </mask>
+          </defs>
+
+          <rect x="0" y="0" width="200" height="200" fill="green" />
+          <rect
+            x="0"
+            y="0"
+            width="200"
+            height="200"
+            fill="red"
+            mask="url(#Mask)"
+          />
+        </svg>
+      </div>
+      <div></div>
+    </div>
   </body>
+  <script>
+    const botton = document.querySelector(".botton");
+    const nnnn = document.querySelector(".nnnn");
+
+    function nnn() {
+      nnnn.style.display = "none";
+    }
+    function fun() {
+      alert("hello");
+    }
+    botton.addEventListener("click", nnn);
+  </script>
 </html>

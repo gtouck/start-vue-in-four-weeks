@@ -3,16 +3,77 @@
   <head>
     <meta charset="utf-8" lang="zh-CN" />
     <title>猜数字</title>
+    <style>
+      .botton {
+        width: 75px;
+        height: 25px;
+        border-radius: 10px;
+        background-color: aquamarine;
+        display: inline-flex;
+        line-height: 25px;
+        box-shadow: 0 0 8px 4px rgb(131, 131, 131);
+        margin: 0px 10px;
+        font-size: 12px;
+        font-family: "思源黑体 CN Medium";
+        user-select: none;
+        content: ddd;
+      }
+
+      .botton:hover {
+        background-color: rgb(0, 255, 170);
+        cursor: pointer;
+      }
+    </style>
   </head>
-  <body>
-    <div class="resultParas">
-      <p class="guesses"></p>
-      <p class="lastResult"></p>
-      <p class="lowOrHi"></p>
-      <p class="chanceRemain"></p>
-      <label for="guessField">Enter a guess: </label>
-      <input type="number" id="guessField" class="guessField" />
-      <input type="submit" value="Submit guess" class="guessSubmit" />
+
+  <body style="background-color: aquamarine">
+    <div
+      class="resultParas"
+      style="
+        text-align: center;
+        width: 800px;
+        margin: auto;
+        background-color: bisque;
+      "
+    >
+      <div>
+        <p class="guesses"></p>
+      </div>
+      <br />
+      <div>
+        <p class="lastResult"></p>
+      </div>
+      <br />
+      <div>
+        <p class="lowOrHi"></p>
+      </div>
+      <br />
+      <div>
+        <p class="chanceRemain"></p>
+      </div>
+      <br />
+      <div>
+        <label for="guessField">Enter a guess: </label>
+        <input
+          type="number"
+          id="guessField"
+          class="guessField"
+          style="width: fit-content"
+        />
+        <div class="botton" @click="fun">
+          <div
+            style="
+              width: 16px;
+              height: 16px;
+              background-image: url(translate.svg);
+              background-size: cover;
+              display: inline-block;
+              margin: auto 10px;
+            "
+          ></div>
+          <span style="font-size: smaller">提交</span>
+        </div>
+      </div>
     </div>
   </body>
   <script>
@@ -23,21 +84,28 @@
     const lowOrHi = document.querySelector(".lowOrHi");
     const chanceRemain = document.querySelector(".chanceRemain");
 
-    const guessSubmit = document.querySelector(".guessSubmit");
+    const guessSubmit = document.querySelector(".botton");
     const guessField = document.querySelector(".guessField");
 
     let guessCount = 0;
-    const guesschances = 10;
+    const guesschances = 6;
     let resetButton;
     lastResult.textContent = "enjoy the game😊";
     lowOrHi.textContent = "input a number between 1 and 100";
     guesses.textContent = "Previous guesses: ";
-    chanceRemain.textContent = "You have " + (guesschances - guessCount) + " chances left";
+    chanceRemain.textContent =
+      "You have " + (guesschances - guessCount) + " chances left";
     function checkGuess() {
-      guessCount++;
-      
-      chanceRemain.textContent = "You have " + (guesschances - guessCount) + " chances left";
       let userGuess = Number(guessField.value);
+      // 校验,如果不是数字,则不执行,并弹出提示
+      if (isNaN(userGuess)) {
+        alert("请输入数字");
+        return;
+      }
+      guessCount++;
+
+      chanceRemain.textContent =
+        "You have " + (guesschances - guessCount) + " chances left";
       guesses.textContent += userGuess + " ";
       if (userGuess === randomNumber) {
         lastResult.textContent = "Congratulations! You got it right!";
@@ -56,13 +124,13 @@
           lowOrHi.textContent = "Last guess was too high!";
         }
       }
-      
+
       guessField.value = "";
       guessField.focus();
     }
     function setGameOver() {
       guessField.disabled = true;
-      guessSubmit.disabled = true;
+      guessSubmit.style.display = "none";
       resetButton = document.createElement("button");
       resetButton.textContent = "Start new game";
       document.body.appendChild(resetButton);
@@ -73,5 +141,12 @@
       window.location.reload();
     }
     guessSubmit.addEventListener("click", checkGuess);
+    // 监听回车键
+    document.onkeydown = function (event) {
+      var e = event || window.event || arguments.callee.caller.arguments[0];
+      if (e && e.keyCode == 13) {
+        checkGuess();
+      }
+    };
   </script>
 </html>
