@@ -105,41 +105,72 @@
         end: "pc2",
         relationship: "open",
       },
+      {
+        start: "power",
+        end: "exchanger",
+        relationship: "open",
+      },
+      {
+        start: "exchanger",
+        end: "pc1",
+        relationship: "close",
+      },
+      {
+        start: "exchanger",
+        end: "pc2",
+        relationship: "open",
+      },
     ];
 
     // 对于每一个连接,绘制一条线
     // 1. 获取每一个连接的起点和终点
     // 2. 绘制一条线
     // 3. 更新线的位置
-    function draw() {
-      for (connection of connectionRelationship) {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100% 100%");
+    document.body.appendChild(svg);
+    connectionRelationship.forEach((connection) => {
+      const start = document.getElementById(connection.start);
+      const end = document.getElementById(connection.end);
+      const line = drawLine(start, end, connection.relationship);
+      svg.appendChild(line);
+    });
+
+    function updateLines() {
+      connectionRelationship.forEach((connection, index) => {
         const start = document.getElementById(connection.start);
         const end = document.getElementById(connection.end);
-        const startRect = start.getBoundingClientRect();
-        const startX = startRect.left + startRect.width / 2 + window.scrollX;
-        const startY = startRect.top + startRect.height / 2 + window.scrollY;
-        const endRect = end.getBoundingClientRect();
-        const endX = endRect.left + endRect.width / 2 + window.scrollX;
-        const endY = endRect.top + endRect.height / 2 + window.scrollY;
-        const svg = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "svg"
-        );
-        svg.setAttribute("viewBox", "0 0 100% 100%");
-        document.body.appendChild(svg);
-        const line = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "path"
-        );
-        line.setAttribute(
-          "d",
-          `M${startX},${startY} L${endX},${startY} L${endX},${endY}`
-        );
-        line.setAttribute("stroke", "black");
-        line.setAttribute("stroke-width", "2");
-        line.setAttribute("fill", "none");
-        svg.appendChild(line);
+        const line = svg.children[index];
+        line.setAttribute("d",drawLine(start, end, connection.relationship).getAttribute("d"));
+      });
+    }
+    function drawLine(start, end, type) {
+      const startRect = start.getBoundingClientRect();
+      const startX = startRect.left + startRect.width / 2 + window.scrollX;
+      const startY = startRect.top + startRect.height / 2 + window.scrollY;
+      const endRect = end.getBoundingClientRect();
+      const endX = endRect.left + endRect.width / 2 + window.scrollX;
+      const endY = endRect.top + endRect.height / 2 + window.scrollY;
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+      );
+      line.setAttribute("stroke", "black");
+      line.setAttribute("stroke-width", "2");
+      line.setAttribute("fill", "none");
+
+      if (type === "open") {
+        line.setAttribute("d", `M${startX},${startY} L${endX},${endY}`);
+      } else if (type === "close") {
+        line.setAttribute("d", `M${startX},${startY} H${endX}`);
+      } else if (type === "vertical") {
+        line.setAttribute("d", `M${startX},${startY} V${endY}`);
+      } else {
+        console.error(`Invalid line type: ${type}`);
+        return;
       }
+      return line;
     }
 
     // const star = document.getElementById("star");
@@ -185,7 +216,7 @@
     //   });
     // }
 
-    // window.addEventListener("resize", updateLines);
-    // window.addEventListener("scroll", updateLines);
+    window.addEventListener("resize", updateLines);
+    window.addEventListener("scroll", updateLines);
   </script>
 </html>
