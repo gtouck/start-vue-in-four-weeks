@@ -8,12 +8,11 @@
         width: 200px;
         height: 400px;
         background-color: aqua;
-        display: inline-block;
         margin: auto;
       }
       #container {
         margin-top: 200px;
-        width: 1200px;
+        width: 80%;
         display: flex;
         align-items: center;
         margin: 0 auto;
@@ -161,7 +160,7 @@
       line.setAttribute("fill", "none");
 
       if (type === "open") {
-        line.setAttribute("d", `M${startX},${startY} L${endX},${endY}`);
+        line.setAttribute("d", `M${startX},${startY} L${endX},${startY} L${endX},${endY}`);
       } else if (type === "close") {
         line.setAttribute("d", `M${startX},${startY} H${endX}`);
       } else if (type === "vertical") {
