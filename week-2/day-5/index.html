@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Selectors: Type Selectors</title>
+    <link rel="stylesheet" href="../styles.css" />
+
+    <style>
+      .machine {
+        width: 200px;
+        height: 400px;
+        background-color: aqua;
+        display: inline-block;
+        margin: auto;
+      }
+      #container {
+        margin-top: 200px;
+        width: 1200px;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+      }
+      #star {
+        height: 100px;
+        width: 100px;
+        background-color: rgb(72, 255, 0);
+        margin: auto;
+        text-align: center;
+        color: #000;
+        align-items: center;
+        line-height: 100px;
+        margin-bottom: 200px;
+      }
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <!-- <p>基站</p> -->
+        <div id="star">star</div>
+      </div>
+      <div style="display: flex; width: 100%; align-items: center">
+        <div id="container">
+          <div id="power" class="machine"></div>
+          <div id="exchanger" class="machine"></div>
+          <div id="pc1" class="machine"></div>
+          <div id="pc2" class="machine"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const star = document.getElementById("star");
+    const machines = document.querySelectorAll(".machine");
+    const starRect = star.getBoundingClientRect();
+    const starX = starRect.left + starRect.width / 2;
+    const starY = starRect.top + starRect.height / 2;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    document.body.appendChild(svg);
+
+    machines.forEach((machine) => {
+      const machineRect = machine.getBoundingClientRect();
+      const machineX = machineRect.left + machineRect.width / 2;
+      const machineY = machineRect.top + machineRect.height / 2;
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      line.setAttribute("x1", starX);
+      line.setAttribute("y1", starY);
+      line.setAttribute("x2", machineX);
+      line.setAttribute("y2", machineY);
+      line.setAttribute("stroke", "black");
+      svg.appendChild(line);
+    });
+
+    function updateLines() {
+      machines.forEach((machine, index) => {
+        const machineRect = machine.getBoundingClientRect();
+        const machineX = machineRect.left + machineRect.width / 2;
+        const machineY = machineRect.top + machineRect.height / 2;
+
+        const line = svg.children[index];
+        line.setAttribute("x1", star.offsetLeft + star.offsetWidth / 2);
+        line.setAttribute("y1", star.offsetTop + star.offsetHeight / 2);
+        line.setAttribute("x2", machineX);
+        line.setAttribute("y2", machineY);
+      });
+    }
+
+    window.addEventListener("resize", updateLines);
+  </script>
+</html>
